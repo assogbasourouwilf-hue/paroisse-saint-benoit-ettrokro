@@ -1,0 +1,11 @@
+{
+  "name": "Paroisse Saint Benoît d’Ettrokro",
+  "short_name": "Saint Benoît",
+  "description": "Registre d’identification des paroissiens",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f2f8",
+  "theme_color": "#512477",
+  "icons": []
+}

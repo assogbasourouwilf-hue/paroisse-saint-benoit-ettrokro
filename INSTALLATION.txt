@@ -1,0 +1,31 @@
+APPLICATION PAROISSIALE — GUIDE DE DÉMARRAGE
+
+1. CONFIGURATION
+Ouvrir config.js et remplacer les deux valeurs de démonstration par :
+- l'URL du projet Supabase ;
+- la clé publique anon/publishable.
+Ne jamais utiliser ni publier la clé service_role.
+
+2. BASE DE DONNÉES
+Le projet Supabase doit contenir les tables paroissiens et utilisateurs_paroisse, la fonction user_has_role(text[]) et les règles RLS préparées lors de la configuration du projet.
+
+IMPORTANT : dans Supabase, ajoutez une politique SELECT permettant à chaque utilisateur de lire son propre profil, tout en conservant la politique du curé pour lire les profils du personnel :
+CREATE POLICY "Personnel consulte son propre profil"
+ON public.utilisateurs_paroisse
+FOR SELECT TO authenticated
+USING (user_id = auth.uid());
+
+3. COMPTES
+Créer les comptes dans Supabase Authentication, puis ajouter une ligne dans utilisateurs_paroisse avec le même user_id, nom_complet, role (cure, vicaire ou secretariat) et actif=true.
+
+4. HÉBERGEMENT
+Publier les fichiers sur un hébergeur HTTPS. GitHub Pages ou Netlify peuvent convenir. L'application doit être servie en HTTPS pour l'installation PWA.
+
+5. INSTALLATION ANDROID
+Ouvrir l'adresse HTTPS de l'application dans Chrome Android, appuyer sur ⋮, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».
+
+6. TESTS
+Avant de saisir de vraies données, utiliser des personnes fictives et vérifier connexion, ajout, numéro automatique, recherche, modification et export CSV.
+
+PROTECTION DES DONNÉES
+Les informations de religion, d'ethnie, de famille et de baptême sont sensibles. Limiter l'accès au personnel autorisé, expliquer aux paroissiens pourquoi les données sont collectées, protéger les exports CSV et effectuer des sauvegardes sécurisées. Ce ZIP est un ensemble de fichiers source, pas encore une application publiée et opérationnelle.

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#512477"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css"><title>Paroisse Saint Benoît d’Ettrokro</title>
+</head><body>
+<header><div class="cross">✝</div><div><h1>Paroisse Saint Benoît d’Ettrokro</h1><p>Registre d’identification des paroissiens</p></div></header>
+<main>
+<div id="setup" class="notice">Avant utilisation, configurez l’URL et la clé publique Supabase dans le fichier <b>config.js</b>.</div>
+<section id="login" class="panel narrow"><h2>Connexion du personnel</h2>
+<form id="loginForm"><label>E-mail<input id="email" type="email" required autocomplete="username"></label>
+<label>Mot de passe<input id="password" type="password" required autocomplete="current-password"></label>
+<button>Se connecter</button></form><p id="loginMsg" role="status"></p></section>
+<div id="app" hidden>
+<section class="panel row"><div><h2>Registre paroissial</h2><p id="profile"></p><p>Curé : Père Arsène N’Goran · Vicaire : Père Ebatchi</p></div><button id="logout" class="secondary">Déconnexion</button></section>
+<section class="panel"><h2 id="formTitle">Ajouter un paroissien</h2>
+<form id="personForm" class="grid"><input id="recordId" type="hidden">
+<label>Nom *<input id="nom" required maxlength="100"></label><label>Prénoms *<input id="prenoms" required maxlength="150"></label>
+<label>Sexe<select id="sexe"><option value="">Non renseigné</option><option>Masculin</option><option>Féminin</option></select></label>
+<label>Date de naissance<input id="date_naissance" type="date"></label><label>Lieu de naissance<input id="lieu_naissance"></label>
+<label>Téléphone<input id="telephone" type="tel"></label><label>Adresse<input id="adresse"></label><label>Village / quartier<input id="village_quartier"></label>
+<label>Groupe ethnique<input id="groupe_ethnique"></label><label>Situation matrimoniale<select id="situation_matrimoniale"><option value="">Non renseignée</option><option>Célibataire</option><option>Marié(e)</option><option>Veuf / Veuve</option><option>Divorcé(e)</option></select></label>
+<label>Nom du père<input id="nom_pere"></label><label>Nom de la mère<input id="nom_mere"></label><label>Date de baptême<input id="date_bapteme" type="date"></label>
+<label>Lieu de baptême<input id="lieu_bapteme"></label><label>Groupe paroissial<input id="groupe_paroissial" placeholder="Chorale, CEB, mouvement…"></label>
+<label class="wide">Observations<textarea id="observations" rows="3"></textarea></label>
+<div class="wide actions"><button id="save">Enregistrer</button><button id="cancel" class="secondary" type="button" hidden>Annuler</button><span id="formMsg"></span></div>
+</form></section>
+<section class="panel"><div class="row"><div><h2>Liste des paroissiens</h2><p id="count">0 fiche</p></div><button id="export" class="secondary">Exporter en CSV</button></div>
+<label>Rechercher<input id="search" placeholder="Nom, prénom, téléphone, village ou numéro"></label>
+<div class="tablewrap"><table><thead><tr><th>N° identification</th><th>Nom et prénoms</th><th>Téléphone</th><th>Village/quartier</th><th>Actions</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="small">Données sensibles : réservez l’accès au personnel autorisé et sécurisez les exports.</p></section></div>
+</main><footer>Paroisse Saint Benoît d’Ettrokro</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script>
+</body></html>
