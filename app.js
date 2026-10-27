@@ -2,7 +2,7 @@
 const $ = id => document.getElementById(id);
 const cfg = window.PARISH_CONFIG || {};
 const ready = cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && !cfg.SUPABASE_URL.includes("COLLEZ_ICI") && !cfg.SUPABASE_ANON_KEY.includes("COLLEZ_ICI");
-if (ready) $("setup").hidden = true;let db, profile, records = [];
+if (ready) $("setup").hidden = true;if (ready) $("setup").hidden = true;let db, profile, records = [];
 const fields = ["nom","prenoms","sexe","date_naissance","lieu_naissance","telephone","adresse","village_quartier","groupe_ethnique","situation_matrimoniale","nom_pere","nom_mere","date_bapteme","lieu_bapteme","groupe_paroissial","observations"];
 if (!ready) { $("loginMsg").textContent = "Configurez d’abord config.js avec les paramètres Supabase."; }
 else if (window.supabase) { db = window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY); start(); }
